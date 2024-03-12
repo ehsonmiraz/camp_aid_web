@@ -1,0 +1,103 @@
+body {
+  font-family: 'Rambla', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+header, footer {
+  background-color: #2c3e50;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+header h1, footer p {
+  margin: 0;
+  font-weight: 700;
+}
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.drive {
+  position: relative;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  margin-bottom: 20px;
+  border-left: 8px solid #3498db;
+  transition: border-left 0.3s ease;
+}
+.drive:hover {
+  border-left: 8px solid #e74c3c;
+}
+.drive h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: #2c3e50;
+}
+.drive-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.drive-details p {
+  margin: 0;
+  font-size: 16px;
+  color: #555;
+}
+.parameter {
+  font-weight: bold;
+}
+.salary {
+  font-weight: bold;
+  color: #27ae60;
+}
+.cgpa {
+  font-weight: bold;
+  color: #e67e22;
+}
+.apply-button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.apply-button:hover {
+  background-color: #2980b9;
+}
+.apply-button:active {
+  transform: translateY(1px);
+}
+.company-logo {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.bookmark-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #3498db; /* Match apply button color */
+  font-size: 24px;
+}
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 14px;
+}

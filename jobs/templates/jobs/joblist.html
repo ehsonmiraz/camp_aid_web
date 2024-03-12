@@ -1,0 +1,27 @@
+{%extends 'root/base.html'%}
+{%block header%}  <h1>Placement Drive Listings</h1>{%endblock%}
+{%block content%}
+{%for job in job_list%}
+<div class="container">
+    <div class="drive">
+        <i class="fas fa-bookmark bookmark-icon"></i>
+        <img src="company_a_logo.png" alt="Company A Logo" class="company-logo">
+        <h2>{{job.organization }} </h2>
+        <div class="drive-details">
+            <p>Date:</p>
+            <p>{{job.date}}</p>
+            <p>Location:</p>
+            <p>{{job.location}}</p>
+            <p>Eligibility:</p>
+            <p class="parameter">{{job.eligibilty}}</p>
+            
+            <p>Minimum CGPA:</p>
+            <p class="cgpa">{{job.cgpa}}</p>
+            <p>Salary:</p>
+            <p class="salary">{{job.salary}}</p>
+        </div>
+        <a class="apply-button" href="www.google.com">Apply Now</a>
+    </div>
+    </div>
+{%endfor%}
+{%endblock%}

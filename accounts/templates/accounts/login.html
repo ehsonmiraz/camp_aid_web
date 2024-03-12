@@ -1,0 +1,15 @@
+{%extends 'root/base.html'%}
+
+{%block header%}
+LOGIN
+{%endblock%}
+{%block content%}
+<form class="site-form" method="post" action="{%url 'accounts:login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="hidden" name="next" value="{{request.GET.next}}">
+<div class="form-group">
+<button class="btn btn-primary"  type="submit">Login</button>
+</div>
+</form>
+{%endblock%}
