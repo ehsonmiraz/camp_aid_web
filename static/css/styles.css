@@ -10988,12 +10988,33 @@ a.highlight{
           bottom: 20px;
           right: 20px;
       }
-      .apply-button:hover {
+      .save-button:hover {
           background-color: #2980b9;
       }
-      .apply-button:active {
+      .save-button:active {
           transform: translateY(1px);
       }
+
+      .save-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+    .save-button:hover {
+        background-color: #2980b9;
+    }
+    .save-button:active {
+        transform: translateY(1px);
+    }
+
       .company-logo {
           position: absolute;
           top: 10px;

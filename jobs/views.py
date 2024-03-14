@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.views.generic import ListView
 from .models import Job
-from accounts.models import SavedJob,AppliedJob
+
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
@@ -13,14 +13,18 @@ class JobListView(ListView):
     template_name = "jobs/joblist.html"
     
     def get_queryset(self):
+        print(type(self.request.user))
         category = self.kwargs['category']
         print(category)
-        if  category == 'applied':
-            return AppliedJob.objects.filter(user_id=self.request.user.id)
+        if  category == 'applied':      
+            applied_jobs= self.request.user.applied_jobs.all()
+            return applied_jobs
         elif category == 'saved':
-            saved_jobs= self.request.user.saved_jobs
-            
-            print(saved_jobs)
+            saved_jobs= self.request.user.saved_jobs.all()
+            return saved_jobs
+        elif category == 'eligible':
+            eligible_jobs=Job.objects.filter(cgpa__lte=self.request.user.cgpa).filter(eligibility=self.request.user.branch)
+            return eligible_jobs
         elif category == 'all':
             return Job.objects.all()
         else:
@@ -30,17 +34,23 @@ class JobListView(ListView):
 def save_view(request, id):
     if request.method == 'POST':
       job = Job.objects.get(pk=id)
-      saved_job=SavedJob.objects.create(user=request.user,job=job)
-      print(saved_job)
-      saved_job.save()
+      print("job: "+ str(job))
+      try:
+        if(request.user.saved_jobs.get(id=job.id)):
+          request.user.saved_jobs.remove(job)       
+      except Exception:
+          request.user.saved_jobs.add(job) 
+          
+      request.user.save()
+      
     return redirect("jobs:default_list")  
 
 def apply_view(request, id):
     if request.method == 'POST':
       job = Job.objects.get(pk=id)
-      applied_job=AppliedJob.objects.create(user=request.user,job=job)
-      print(applied_job)
-      applied_job.save()
+      applied_jobs=request.user.applied_jobs.add(job)
+      print(applied_jobs)
+      applied_jobs.save()
     if job.apply_link:  
         return redirect(job.apply_link)
     else:

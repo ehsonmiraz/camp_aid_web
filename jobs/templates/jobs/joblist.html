@@ -18,6 +18,8 @@
         <hr/>
         <li><a href="{%url 'jobs:list' category='applied' %}">Applied</a></li>
         <hr/>
+        <li><a href="{%url 'jobs:list' category='eligible' %}">Eligible</a></li>
+        <hr/>
         <li><a href="{%url 'jobs:list' category='archived' %}">Archived</a></li>
         <hr/>
     </ul>
@@ -29,7 +31,7 @@
     </div>
         
     <div class="scrollview">
-    {% for i in "x"|rjust:"100" %}
+    {% comment %} {% for i in "x"|rjust:"100" %} {% endcomment %}
     {%for job in job_list%}
     
     <div class="content-container">
@@ -43,7 +45,7 @@
                 <p>Location:</p>
                 <p>{{job.location}}</p>
                 <p>Eligibility:</p>
-                <p class="parameter">{{job.eligibilty}}</p>
+                <p class="parameter">{{job.eligibility}}</p>
                 
                 <p>Minimum CGPA:</p>
                 <p class="cgpa">{{job.cgpa}}</p>
@@ -52,7 +54,14 @@
             </div>
             <form action="{% url 'jobs:save_view' job.id %}" method="post">
                 {% csrf_token %}
-                <button type="submit" value="submit" class="btn btn-primary">Save</button>
+                <button type="submit" value="submit" class="save-button">
+                    
+                    {% if request.path == '/jobs/saved/'%} Unsave
+                    {%else%} Save
+                    {% endif%}
+                    
+
+                </button>
             </form>
             
             <a class="apply-button" href="{% url 'jobs:apply_view' job.id %}">Apply Now</a>
@@ -60,7 +69,7 @@
         </div>
     
         {%endfor%}
-        {%endfor%}
+        {% comment %} {%endfor%} {% endcomment %}
     </div>
 </div>
     {%endblock%}

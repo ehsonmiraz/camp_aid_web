@@ -20,27 +20,27 @@ class StudentUser(AbstractUser):
         choices=branch_choices,
         default="BTCSE24",
     )
-    roll_no = models.CharField(max_length=20, blank=True)
-    applied_jobs = models.ManyToManyField(Job, through='AppliedJob', related_name='applying_users', blank=True)
-    saved_jobs = models.ManyToManyField(Job, through='SavedJob', related_name='saving_users', blank=True)
+    roll_no = models.CharField(max_length=20, blank=True,)
+    applied_jobs = models.ManyToManyField(Job,  blank=True,related_name="applying_jobs")
+    saved_jobs = models.ManyToManyField(Job, blank=True,related_name="saving_jobs")
 
     def __str__(self):
         return self.username
    
-class AppliedJob(models.Model):
-    objects = models.Manager()
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    job = models.ForeignKey(Job,on_delete=models.CASCADE,)
+# class AppliedJob(models.Model):
+#     objects = models.Manager()
+#     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+#     job = models.ForeignKey(Job,on_delete=models.CASCADE,)
 
-    def __str__(self):
-        return f'{self.user} applied {self.job}'
+#     def __str__(self):
+#         return f'{self.user} applied {self.job}'
 
-class SavedJob(models.Model):
-    objects = models.Manager()
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+# class SavedJob(models.Model):
+#     objects = models.Manager()
+#     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+#     job = models.ForeignKey(Job, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.user} saved {self.job}'
+#     def __str__(self):
+#         return f'{self.user} saved {self.job}'
 
     
