@@ -1,9 +1,20 @@
 {%extends 'root/base.html'%}
 
 {%block header%}
-Register
+<header class="masthead" style="background:smoke-white">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="site-heading">
+                
+        </div>
+        </div>
+    </div>
+</header>
 {%endblock%}
 {%block content%}
+<center><h2>Register to get started</h2></center>
+<div class="main">
+    
 <form class="site-form" method="post" action="{%url 'accounts:signup' %}">
     {% csrf_token %}
     {{ form.as_p }}
@@ -12,4 +23,5 @@ Register
 <button class="btn btn-primary"  type="submit">Register</button>
 </div>
 </form>
+</div>
 {%endblock%}

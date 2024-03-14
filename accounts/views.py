@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,resolve_url
 # Create your views here.
 from django.contrib.auth.views import LoginView,LogoutView
 from django.views.generic.edit import CreateView
-from django.contrib.auth.forms import UserCreationForm
+from .forms import RegisterForm
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -11,10 +11,11 @@ from django.http import HttpResponse
 class Login(LoginView):
     redirect_authenticated_user = True
     template_name = 'accounts/login.html'
+    
     def get_success_url(self):
         messages.success(self.request,'Logged in successfully')
         print ('Login successful')
-        return  resolve_url("jobs:list")
+        return  resolve_url("jobs:default_list")
     
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
@@ -23,7 +24,7 @@ class Login(LoginView):
 
 
 class SignUp(CreateView):
-    form_class = UserCreationForm
+    form_class = RegisterForm
     success_url = reverse_lazy("accounts:login")  # Redirect to the login page upon successful registration
     template_name = 'accounts/signup.html'
 

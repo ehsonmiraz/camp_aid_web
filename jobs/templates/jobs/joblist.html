@@ -1,27 +1,66 @@
 {%extends 'root/base.html'%}
-{%block header%}  <h1>Placement Drive Listings</h1>{%endblock%}
-{%block content%}
-{%for job in job_list%}
-<div class="container">
-    <div class="drive">
-        <i class="fas fa-bookmark bookmark-icon"></i>
-        <img src="company_a_logo.png" alt="Company A Logo" class="company-logo">
-        <h2>{{job.organization }} </h2>
-        <div class="drive-details">
-            <p>Date:</p>
-            <p>{{job.date}}</p>
-            <p>Location:</p>
-            <p>{{job.location}}</p>
-            <p>Eligibility:</p>
-            <p class="parameter">{{job.eligibilty}}</p>
-            
-            <p>Minimum CGPA:</p>
-            <p class="cgpa">{{job.cgpa}}</p>
-            <p>Salary:</p>
-            <p class="salary">{{job.salary}}</p>
+{%block header%} <header class="masthead" style="background:smoke-white">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="site-heading">
+                
         </div>
-        <a class="apply-button" href="www.google.com">Apply Now</a>
+        </div>
     </div>
+</header>{%endblock%}
+{%block content%}
+
+<div class="side-menu">
+    <ul>
+        <li><a href="{%url 'jobs:default_list'%}">All</a></li>
+        <hr/>
+        <li><a href="{%url 'jobs:list' category='saved'%}">Saved Jobs</a></li>
+        <hr/>
+        <li><a href="{%url 'jobs:list' category='applied' %}">Applied</a></li>
+        <hr/>
+        <li><a href="{%url 'jobs:list' category='archived' %}">Archived</a></li>
+        <hr/>
+    </ul>
+</div>
+<div class="center-content">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <button class="search-button">Search</button>
     </div>
-{%endfor%}
-{%endblock%}
+        
+    <div class="scrollview">
+    {% for i in "x"|rjust:"100" %}
+    {%for job in job_list%}
+    
+    <div class="content-container">
+        <div class="drive">
+          
+            
+            <h2>{{job.organization }} </h2>
+            <div class="drive-details">
+                <p>Date:</p>
+                <p>{{job.date}}</p>
+                <p>Location:</p>
+                <p>{{job.location}}</p>
+                <p>Eligibility:</p>
+                <p class="parameter">{{job.eligibilty}}</p>
+                
+                <p>Minimum CGPA:</p>
+                <p class="cgpa">{{job.cgpa}}</p>
+                <p>Salary:</p>
+                <p class="salary">{{job.salary}}</p>
+            </div>
+            <form action="{% url 'jobs:save_view' job.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" value="submit" class="btn btn-primary">Save</button>
+            </form>
+            
+            <a class="apply-button" href="{% url 'jobs:apply_view' job.id %}">Apply Now</a>
+        </div>
+        </div>
+    
+        {%endfor%}
+        {%endfor%}
+    </div>
+</div>
+    {%endblock%}
