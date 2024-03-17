@@ -135,3 +135,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGOUT_REDIRECT_URL="url 'accounts:login'"
 
 AUTH_USER_MODEL = 'accounts.StudentUser'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

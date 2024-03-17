@@ -63,8 +63,12 @@
 
                 </button>
             </form>
-            
-            <a class="apply-button" href="{% url 'jobs:apply_view' job.id %}">Apply Now</a>
+            <form action="{% url 'jobs:apply_view' job.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" value="submit" class="apply-button">
+                    Apply
+                </button>
+            </form>
         </div>
         </div>
     

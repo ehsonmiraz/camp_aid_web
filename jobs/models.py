@@ -18,7 +18,7 @@ class Job(models.Model):
     eligibility=models.CharField(max_length=10,
         choices=branch_choices,
         default="BTCSE24")
-    cgpa=models.FloatField(default=0.0, blank=True)
+    cgpa=models.FloatField(default=0.0)
     salary=models.IntegerField(blank=True, null=True)
     position=models.CharField(max_length=30)
     apply_link=models.URLField(blank=True, null=True)

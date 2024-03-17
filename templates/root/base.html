@@ -17,7 +17,7 @@
 
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <style>
-        /* Styles for form container */
+        
 
     </style>
     </head>
@@ -25,7 +25,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href={%url 'jobs:default_list'  %}>Dit placement helper</a>
+                <a class="navbar-brand" href={%url 'jobs:default_list'  %}><img class="logo" src="{% static 'images/dit-logo.jpg' %}"></img>Dit placement helper</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -34,8 +34,8 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'jobs:list' category='all' %}">Home</a></li>
                         
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="#">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'about'%}">About</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{%url 'contact'%}">Contact</a></li>
                         {%if user.is_authenticated%}
                         <li class="nav-item">
                             <form class="nav-link px-lg-3 py-3 py-lg-4"  method="post" action="{%url 'accounts:logout' %}">
@@ -43,6 +43,9 @@
                                 <button class="logout"  type="submit"><svg height="32" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d="m6 30h12a2.0023 2.0023 0 0 0 2-2v-3h-2v3h-12v-24h12v3h2v-3a2.0023 2.0023 0 0 0 -2-2h-12a2.0023 2.0023 0 0 0 -2 2v24a2.0023 2.0023 0 0 0 2 2z"/><path d="m20.586 20.586 3.586-3.586h-14.172v-2h14.172l-3.586-3.586 1.414-1.414 6 6-6 6z"/><path d="m0 0h32v32h-32z" fill="none"/></svg>Log out</button>
                             </form>
                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link px-lg-3 py-3 py-lg-4" href='#'> <div class="profile">Hello {{request.user.username}}</div></a>
+                          </li>
                         {%else%}
                         <li class="nav-item">
                           <a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'accounts:login' %}">Login</a>
